@@ -1,0 +1,23 @@
+# Node.js files
+node_modules/
+
+# Vite build output
+build/
+
+# TypeScript compilation artifacts
+*.tsbuildinfo
+
+# Editor configuration files
+*.iml
+*.vscode/
+
+# IDE temporary files
+*.swp
+.idea/
+
+# Compiled React code
+*.js
+
+# Other files to ignore
+.DS_Store
+Thumbs.db
