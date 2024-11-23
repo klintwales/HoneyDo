@@ -1,4 +1,5 @@
 import {Button, Card, Collapsible} from "@chakra-ui/react"
+import { MdExpandLess } from "react-icons/md"
 
 function Reminder() {
     return(
@@ -6,7 +7,7 @@ function Reminder() {
             <Card.Body gap="2">
                 <Card.Title mt="2">Pick up eggs</Card.Title>
                 <Collapsible.Root>
-                    <Collapsible.Trigger paddingY="3">Toggle Collapsible</Collapsible.Trigger>
+                    <Collapsible.Trigger paddingY="3"><MdExpandLess></MdExpandLess></Collapsible.Trigger>
                     <Collapsible.Content>
                     <Card.Description>
                         This is the card body. Lorem ipsum dolor sit amet, consectetur

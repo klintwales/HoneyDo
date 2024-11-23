@@ -1,6 +1,6 @@
 import './App.css'
 import {
-    Box,
+    Box, Container,
     DrawerBackdrop, DrawerBody, DrawerFooter,
     DrawerHeader,
     DrawerRoot,
@@ -13,7 +13,7 @@ import Reminder from "@/components/Reminder.tsx";
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
     return (
-      <div>
+      <Container w={1080}>
           <Grid backgroundColor={"aliceblue"} padding={4} width={'100%'}>
               <Box display="flex" justifyContent="right">
                 <Avatar variant="solid" name="Klint Wales" onClick={() => setDrawerOpen(!drawerOpen)}/>
@@ -35,7 +35,7 @@ function App() {
                   <DrawerFooter />
               </DrawerContent>
           </DrawerRoot>
-      </div>
+      </Container>
   )
 }
 
