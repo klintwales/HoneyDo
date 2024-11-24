@@ -9,7 +9,7 @@ import {
 import {DrawerContent} from "@/components/ui/drawer.tsx";
 import { Avatar } from "@/components/ui/avatar"
 import {useState} from "react";
-import Reminder from "@/components/Reminder.tsx";
+import Reminder from "@/components/Reminder/Reminder.tsx";
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
     return (
@@ -20,7 +20,7 @@ function App() {
               </Box>
           </Grid>
           <List.Root>
-              <Reminder>
+              <Reminder CompletedStatus={true} Title={"New Title"} Note={"New Note"}>
                   
               </Reminder>
           </List.Root>
