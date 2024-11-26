@@ -1,11 +1,11 @@
-import {Button, Card, Collapsible, Editable} from "@chakra-ui/react"
-import { MdExpandLess } from "react-icons/md"
+import {Box, Button, Card, Collapsible, Container, Editable, Icon} from "@chakra-ui/react"
+import {MdExpandLess, MdExpandMore} from "react-icons/md"
 import {useState} from "react";
 import {reminderModel} from "./Reminder-Model"
 
 function Reminder(reminder: reminderModel) {
     const [hasBeenEdited, setHasBeenEdited] = useState(false);
-    
+    const [isDetailsExpanded, setIsDetailsExpanded] = useState(false)
     return(
         <Card.Root marginX={24} marginTop={12}>
             <Card.Body gap="2">
@@ -13,9 +13,9 @@ function Reminder(reminder: reminderModel) {
                     <Editable.Preview></Editable.Preview>
                     <Editable.Input></Editable.Input>
                 </Editable.Root>
-                <Collapsible.Root>
-                    <Collapsible.Trigger paddingY="3">
-                        <MdExpandLess></MdExpandLess>
+                <Collapsible.Root onExitComplete={()=>setIsDetailsExpanded(false)} onOpenChange={()=> setIsDetailsExpanded(true)}>
+                    <Collapsible.Trigger size={"xs"} as={Box}>
+                        {isDetailsExpanded? <MdExpandLess></MdExpandLess> : <MdExpandMore />}
                     </Collapsible.Trigger>
                     <Collapsible.Content>
                     <Card.Description>
@@ -26,7 +26,6 @@ function Reminder(reminder: reminderModel) {
                     </Card.Description>
                     </Collapsible.Content>
                 </Collapsible.Root>
-
             </Card.Body>
             <Card.Footer justifyContent="flex-end">
                 {hasBeenEdited? <Button variant="outline">Save</Button>: ''}
