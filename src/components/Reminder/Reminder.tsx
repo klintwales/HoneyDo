@@ -1,4 +1,4 @@
-import {Box, Button, Card, Collapsible, Container, Editable, Icon} from "@chakra-ui/react"
+import {Box, Button, Card, Collapsible, Editable} from "@chakra-ui/react"
 import {MdExpandLess, MdExpandMore} from "react-icons/md"
 import {useState} from "react";
 import {reminderModel} from "./Reminder-Model"
@@ -19,7 +19,7 @@ function Reminder(reminder: reminderModel) {
                     </Card.Title>
                 </Editable.Root>
                 <Collapsible.Root onExitComplete={()=>setIsDetailsExpanded(false)} onOpenChange={()=> setIsDetailsExpanded(true)}>
-                    <Collapsible.Trigger size={"xs"} as={Box}>
+                    <Collapsible.Trigger as={Box}>
                         {isDetailsExpanded? <MdExpandLess></MdExpandLess> : <MdExpandMore />}
                     </Collapsible.Trigger>
                     <Collapsible.Content>
