@@ -2,6 +2,7 @@ import {Button, Card, Collapsible, Editable} from "@chakra-ui/react"
 import { MdExpandLess } from "react-icons/md"
 import {useState} from "react";
 import {reminderModel} from "./Reminder-Model"
+import { Checkbox } from "@/components/ui/checkbox"
 
 function Reminder(reminder: reminderModel) {
     const [hasBeenEdited, setHasBeenEdited] = useState(false);
@@ -10,8 +11,12 @@ function Reminder(reminder: reminderModel) {
         <Card.Root marginX={24} marginTop={12}>
             <Card.Body gap="2">
                 <Editable.Root defaultValue={reminder.Title} onEditChange={()=> setHasBeenEdited(true)}>
-                    <Editable.Preview></Editable.Preview>
-                    <Editable.Input></Editable.Input>
+                    <Checkbox/>
+
+                    <Card.Title>
+                        <Editable.Preview></Editable.Preview>
+                        <Editable.Input></Editable.Input>
+                    </Card.Title>
                 </Editable.Root>
                 <Collapsible.Root>
                     <Collapsible.Trigger paddingY="3">
