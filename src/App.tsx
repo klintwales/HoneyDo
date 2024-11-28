@@ -1,10 +1,10 @@
 import './App.css'
 import {
-    Box, Container,
+    Box, Button, Container,
     DrawerBackdrop, DrawerBody, DrawerFooter,
     DrawerHeader,
     DrawerRoot,
-    DrawerTitle, Grid, List,
+    DrawerTitle, Grid, SimpleGrid, Stack, VStack,
 } from "@chakra-ui/react";
 import {DrawerContent} from "@/components/ui/drawer.tsx";
 import { Avatar } from "@/components/ui/avatar"
@@ -15,19 +15,36 @@ import { SegmentedControl } from "@/components/ui/segmented-control"
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
     return (
-      <Container w={1080}>
-          <Grid padding={4} width={'100%'}>
+      <Container w={"1080"}>
+        <SimpleGrid>
+          <Grid padding={4} width={'100%'} height={"10vh"}>
               <Box display="flex" justifyContent="right">
                 <Avatar variant="solid" name="Klint Wales" onClick={() => setDrawerOpen(!drawerOpen)}/>
               </Box>
           </Grid>
-          <SegmentedControl items={["To-Do", "Done", "All"]} size={"lg"}/>
-          <List.Root>
+          <VStack height={"5vh"}>
+              <SegmentedControl items={["To-Do", "Done", "All"]} size={"lg"} alignItems={"center"}/>
+          </VStack>
+          <Stack w={"100%"} height={"70vh"}>
               <Reminder CompletedStatus={true} Title={"New Title"} Note={"New Note"}>
-                  
               </Reminder>
-          </List.Root>
-                    
+          </Stack>
+          <Grid padding={4} width={'100%'} height={"10vh"}>
+              <Box display="flex" justifyContent="right">
+                  <Button
+                      borderRadius="full"
+                      width="60px"
+                      height="60px"
+                      backgroundColor="teal.500"
+                      color="white"
+                      _hover={{ backgroundColor: "teal.600" }}
+                      boxShadow="0px 4px 10px rgba(0, 0, 0, 0.3)"
+                      zIndex={999}
+                  >
+                      +
+                  </Button>
+              </Box>
+          </Grid>
           <DrawerRoot open={drawerOpen} onOpenChange={(e) => setDrawerOpen(e.open)}>
               <DrawerBackdrop />
               <DrawerContent>
@@ -38,6 +55,7 @@ function App() {
                   <DrawerFooter />
               </DrawerContent>
           </DrawerRoot>
+        </SimpleGrid>
       </Container>
   )
 }
