@@ -19,7 +19,7 @@ function App() {
         <SimpleGrid>
           <Grid padding={4} width={'100%'} height={"10vh"}>
               <Box display="flex" justifyContent="right">
-                <Avatar variant="solid" name="Klint Wales" onClick={() => setDrawerOpen(!drawerOpen)}/>
+                <Avatar bg={"gray.300"} variant="solid" name="Klint Wales" onClick={() => setDrawerOpen(!drawerOpen)}/>
               </Box>
           </Grid>
           <VStack height={"5vh"}>
@@ -35,7 +35,7 @@ function App() {
                       borderRadius="full"
                       width="60px"
                       height="60px"
-                      backgroundColor="teal.500"
+                      backgroundColor="gray.300"
                       color="white"
                       _hover={{ backgroundColor: "teal.600" }}
                       boxShadow="0px 4px 10px rgba(0, 0, 0, 0.3)"
