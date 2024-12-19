@@ -12,6 +12,18 @@ import {useState} from "react";
 import Reminder from "@/components/Reminder/Reminder.tsx";
 import { SegmentedControl } from "@/components/ui/segmented-control"
 
+const baseURL = "http://localhost:5007"
+
+const reminders = await fetch(baseURL + "/reminders/get-reminder-by-id/?reminderId=675ba9b90644ac25f2a7f480", {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+    }
+})
+
+console.log("REMINDERS: ", reminders)
+
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
     return (
@@ -40,6 +52,7 @@ function App() {
                       _hover={{ backgroundColor: "teal.600" }}
                       boxShadow="0px 4px 10px rgba(0, 0, 0, 0.3)"
                       zIndex={999}
+                      onClick={() => setDrawerOpen(!drawerOpen)}
                   >
                       +
                   </Button>
