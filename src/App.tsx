@@ -14,16 +14,17 @@ import { SegmentedControl } from "@/components/ui/segmented-control"
 
 const baseURL = "http://localhost:5007"
 
-const reminders = await fetch(baseURL + "/reminders/get-reminder-by-id/?reminderId=675ba9b90644ac25f2a7f480", {
+const reminder = await fetch(baseURL + "/reminders/get-reminder-by-id/?reminderId=675ba9b90644ac25f2a7f480", {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*"
     }
-})
+}).then(res => res.json())
 
-console.log("REMINDERS: ", reminders)
-
+console.log("REMINDERS: ", reminder)
+let reminders= [];
+reminders.push(reminder)
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
     return (
@@ -38,8 +39,10 @@ function App() {
               <SegmentedControl items={["To-Do", "Done", "All"]} size={"lg"} alignItems={"center"}/>
           </VStack>
           <Stack w={"100%"} height={"70vh"}>
-              <Reminder CompletedStatus={true} Title={"New Title"} Note={"New Note"}>
-              </Reminder>
+              {reminders.map((reminder) => (
+                  <Reminder CompletedStatus={reminder.complete} Title={reminder.title} Note={reminder.description} />
+              ))}
+
           </Stack>
           <Grid padding={4} width={'100%'} height={"10vh"}>
               <Box display="flex" justifyContent="right">
