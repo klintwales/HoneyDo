@@ -1,8 +1,8 @@
-class Reminder {
-    private id: string;
-    private title: string;
-    private description: string;
-    private createdDate: Date;
-    private modifiedDate: Date;
-    private complete: boolean;
+export interface IReminder {
+    id: string;
+    title: string;
+    description: string;
+    createdDate: Date;
+    modifiedDate: Date;
+    complete: boolean;
 }

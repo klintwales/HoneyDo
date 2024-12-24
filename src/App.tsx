@@ -11,6 +11,7 @@ import { Avatar } from "@/components/ui/avatar"
 import {useState} from "react";
 import Reminder from "@/components/Reminder/Reminder.tsx";
 import { SegmentedControl } from "@/components/ui/segmented-control"
+import {IReminder} from "@/models/reminder.tsx";
 
 const baseURL = "http://localhost:5007"
 
@@ -23,7 +24,8 @@ const reminder = await fetch(baseURL + "/reminders/get-reminder-by-id/?reminderI
 }).then(res => res.json())
 
 console.log("REMINDERS: ", reminder)
-let reminders= [];
+
+const reminders: IReminder[] = [];
 reminders.push(reminder)
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
