@@ -12,21 +12,11 @@ import {useState} from "react";
 import Reminder from "@/components/Reminder/Reminder.tsx";
 import { SegmentedControl } from "@/components/ui/segmented-control"
 import {IReminder} from "@/models/reminder.tsx";
-
-const baseURL = "http://localhost:5007"
-
-const reminder = await fetch(baseURL + "/reminders/get-reminder-by-id/?reminderId=675ba9b90644ac25f2a7f480", {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-    }
-}).then(res => res.json())
-
-console.log("REMINDERS: ", reminder)
+import {getReminderById} from "@/services/reminder-service.tsx";
 
 const reminders: IReminder[] = [];
-reminders.push(reminder)
+reminders.push(await getReminderById("675ba9b90644ac25f2a7f480"));
+
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
     return (
