@@ -1,17 +1,29 @@
 import {Box, Button, Card, Collapsible, Editable} from "@chakra-ui/react"
 import {MdExpandLess, MdExpandMore} from "react-icons/md"
-import {useState} from "react";
-import {reminderModel} from "./Reminder-Model"
+import  {useEffect, useState} from "react";
 import { Checkbox } from "@/components/ui/checkbox"
+import {IReminder} from "@/models/reminder.tsx";
 
-function Reminder(reminder: reminderModel) {
+interface IReminderProps extends React.HTMLAttributes<HTMLDivElement>{
+    reminder: IReminder;
+}
+
+function Reminder(reminderProps: IReminderProps) {
+    const [stateReminder, setStateReminder] = useState<IReminder>(reminderProps.reminder);
     const [hasBeenEdited, setHasBeenEdited] = useState(false);
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(false)
+
+    useEffect(() => {
+        if(!hasBeenEdited){
+            setHasBeenEdited(true)
+        }
+    }, [hasBeenEdited])
+
     return(
         <Card.Root marginX={24} marginTop={12}>
             <Card.Body gap="2">
-                <Editable.Root defaultValue={reminder.Title} onEditChange={()=> setHasBeenEdited(true)}>
-                    <Checkbox/>
+                <Editable.Root defaultValue={stateReminder.title} onEditChange={()=> setStateReminder({...stateReminder, title: stateReminder.title})}>
+                    <Checkbox checked={stateReminder.complete} onCheckedChange={() => setStateReminder({...stateReminder, complete: !stateReminder.complete})}/>
 
                     <Card.Title>
                         <Editable.Preview></Editable.Preview>
@@ -24,7 +36,7 @@ function Reminder(reminder: reminderModel) {
                     </Collapsible.Trigger>
                     <Collapsible.Content>
                     <Card.Description>
-                        <Editable.Root defaultValue={reminder.Note} onEditChange={()=> setHasBeenEdited(true)}>
+                        <Editable.Root defaultValue={stateReminder.description} onEditChange={()=> setStateReminder({...stateReminder, description: stateReminder.description})}>
                             <Editable.Preview></Editable.Preview>
                             <Editable.Input></Editable.Input>
                         </Editable.Root>

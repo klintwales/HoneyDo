@@ -31,8 +31,8 @@ function App() {
               <SegmentedControl items={["To-Do", "Done", "All"]} size={"lg"} alignItems={"center"}/>
           </VStack>
           <Stack w={"100%"} height={"70vh"}>
-              {reminders.map((reminder) => (
-                  <Reminder CompletedStatus={reminder.complete} Title={reminder.title} Note={reminder.description} />
+              {reminders.map((reminderData) => (
+                  <Reminder reminder={reminderData}></Reminder>
               ))}
 
           </Stack>
